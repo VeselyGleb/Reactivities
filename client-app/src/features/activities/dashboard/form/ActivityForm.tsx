@@ -8,7 +8,7 @@ import { useStore } from '../../../../app/stores/store';
 
 export default observer(function ActivityForm() {
     const {activityStore} = useStore();
-    const {selectedActivity, createActivity, updateActivity, 
+    const {createActivity, updateActivity, 
         loading, loadActivity, loadingInitial} = activityStore;
     const {id} = useParams();
     const navigate = useNavigate();
