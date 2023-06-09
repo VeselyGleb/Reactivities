@@ -1,8 +1,8 @@
-import { observer } from 'mobx-react-lite';
-import React, { SyntheticEvent, useState } from 'react';
-import { Button, Item, Label, Segment } from 'semantic-ui-react';
-import { useStore } from '../../../app/stores/store';
-import { Activity } from '../../../models/activity';
+import { observer } from "mobx-react-lite";
+import { useState, SyntheticEvent } from "react";
+import { Link } from "react-router-dom";
+import { Segment, Item, Button, Label } from "semantic-ui-react";
+import { useStore } from "../../../app/stores/store";
 
 export default observer(function ActivityList() {
     const {activityStore} = useStore();
@@ -28,13 +28,12 @@ export default observer(function ActivityList() {
                                 <div>{activity.city}, {activity.venue}</div>
                             </Item.Description>
                             <Item.Extra>
-                                <Button onClick={() => activityStore.selectActivity(activity.id)}
-                                floated='right' content='View' color='pink' />
-                                <Button name={activity.id}
-                                loading={loading && target === activity.id}
-                                onClick={(e) => handleActivityDelete(e, activity.id)}
-                                floated='right' content='Delete' color='violet' />
-                                <Label basic content={activity.category} />
+                                <Button as={Link} to={`/activities/${activity.id}`} floated='right' content='View' color='pink'/>
+                                <Button loading={loading && target === activity.id}
+                                        name={activity.id} floated='right' content='Delete'
+                                        color='violet'
+                                        onClick={(e) => handleActivityDelete(e, activity.id)}/>
+                                <Label basic content={activity.category}/>
                             </Item.Extra>
                         </Item.Content>
                     </Item>
