@@ -1,11 +1,11 @@
 import { makeAutoObservable, runInAction } from 'mobx';
 import { v4 as uuid } from 'uuid';
-import { Calculator } from '../../models/calculator';
+import { Calculation } from '../../models/calculation';
 import agent from '../api/agent';
 
 export default class CalculatorStore {
-    calculatorRegistry = new Map<string, Calculator>();
-    selectedCalculator?: Calculator = undefined;
+    calculatorRegistry = new Map<string, Calculation>();
+    selectedCalculator?: Calculation = undefined;
     editMode = false;
     loading = false;
     loadingInitial = false;
@@ -14,7 +14,7 @@ export default class CalculatorStore {
         makeAutoObservable(this)
     }
 
-    get groupedCalculate(): [string, Calculator[]][] {
+    get groupedCalculate(): [string, Calculation[]][] {
         const sortedCalculate = Array.from(this.calculatorRegistry.values()).sort((a, b) =>
             Date.parse(a.date) - Date.parse(b.date));
 
@@ -23,7 +23,7 @@ export default class CalculatorStore {
                 const date = calculator.date.split('T')[0];
                 calculate[date] = calculate[date] ? [...calculate[date], calculator] : [calculator];
                 return calculate;
-            }, {} as {[key: string]: Calculator[]})
+            }, {} as {[key: string]: Calculation[]})
         )
     }
 
@@ -35,7 +35,7 @@ export default class CalculatorStore {
     loadCalculate = async () => {
         this.setLoadingInitial(true);
         try {
-            const calculate = await agent.Calculate.list();
+            const calculate = await agent.Calculations.list();
             calculate.forEach(calculator => {
                 this.setCalculator(calculator);
             })
@@ -55,7 +55,7 @@ export default class CalculatorStore {
         else {
             this.setLoadingInitial(true);
             try {
-                calculator = await agent.Calculate.details(id);
+                calculator = await agent.Calculations.details(id);
                 this.setCalculator(calculator);
                 runInAction(() => this.selectedCalculator = calculator);
                 this.setLoadingInitial(false);
@@ -67,7 +67,7 @@ export default class CalculatorStore {
         }
     }
 
-    private setCalculator = (calculator: Calculator) => {
+    private setCalculator = (calculator: Calculation) => {
         calculator.date = calculator.date.split('T')[0];
         this.calculatorRegistry.set(calculator.id, calculator);
     }
@@ -80,11 +80,11 @@ export default class CalculatorStore {
         this.loadingInitial = state;
     }
 
-    createCalculator = async (calculator: Calculator) => {
+    createCalculator = async (calculator: Calculation) => {
         this.loading = true;
         calculator.id = uuid();
         try {
-            await agent.Calculate.create(calculator);
+            await agent.Calculations.create(calculator);
             runInAction(() => {
                 this.calculatorRegistry.set(calculator.id, calculator);
                 this.selectedCalculator = calculator;
@@ -96,34 +96,34 @@ export default class CalculatorStore {
             runInAction(() => this.loading = false);
         }
     }
-    updateCalculator = async (calculator: Calculator) => {
-        this.loading = true;
-        try {
-            await agent.Calculate.update(calculator)
-            runInAction(() => {
-                this.calculatorRegistry.set(calculator.id, calculator);
-                this.selectedCalculator = calculator;
-                this.editMode = false;
-                this.loading = false;
-            })
-        } catch (error) {
-            console.log(error);
-            runInAction(() => this.loading = false);
-        }
-    }
-    deleteCalculator = async (id: string) => {
-        this.loading = true;
-        try {
-            await agent.Calculate.delete(id);
-            runInAction(() => {
-                this.calculatorRegistry.delete(id);
-                this.loading = false;
-            })
-        } catch (error) {
-            console.log(error);
-            runInAction(() => {
-                this.loading = false;
-            })
-        }
-    }
+    // updateCalculator = async (calculator: Calculation) => {
+    //     this.loading = true;
+    //     try {
+    //         await agent.Calculations.update(calculator)
+    //         runInAction(() => {
+    //             this.calculatorRegistry.set(calculator.id, calculator);
+    //             this.selectedCalculator = calculator;
+    //             this.editMode = false;
+    //             this.loading = false;
+    //         })
+    //     } catch (error) {
+    //         console.log(error);
+    //         runInAction(() => this.loading = false);
+    //     }
+    // }
+    // deleteCalculator = async (id: string) => {
+    //     this.loading = true;
+    //     try {
+    //         await agent.Calculations.delete(id);
+    //         runInAction(() => {
+    //             this.calculatorRegistry.delete(id);
+    //             this.loading = false;
+    //         })
+    //     } catch (error) {
+    //         console.log(error);
+    //         runInAction(() => {
+    //             this.loading = false;
+    //         })
+    //     }
+    // }
 }

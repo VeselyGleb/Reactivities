@@ -9,8 +9,8 @@ import LoadingComponent from "../../../../app/layout/LoadingComponent";
 import { useStore } from "../../../../app/stores/store";
 
 export default observer(function CalculatorDetails() {
-  const { calculatorStore } = useStore();
-  const { selectedCalculator: calculator, loadCalculator, loadingInitial } = calculatorStore;
+  const { calculationStore } = useStore();
+  const { selectedCalculator: calculator, loadCalculator, loadingInitial } = calculationStore;
   const { id } = useParams();
 
   useEffect(() => {

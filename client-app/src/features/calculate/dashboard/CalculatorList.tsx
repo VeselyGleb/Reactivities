@@ -5,8 +5,8 @@ import { useStore } from '../../../app/stores/store';
 import CalculatorListItem from './CalculatorListItem';
 
 export default observer(function CalculatorList() {
-    const { calculatorStore } = useStore();
-    const { groupedCalculate } = calculatorStore;
+    const { calculationStore } = useStore();
+    const { groupedCalculate } = calculationStore;
 
 return (
         <>

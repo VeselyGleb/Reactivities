@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite';
 import React from 'react'
 import {Button, Header, Item, Segment, Image} from 'semantic-ui-react'
-import { Calculator } from '../../../../models/calculator';
+import { Calculation } from '../../../../models/calculation';
 
 const calculatorImageStyle = {
     filter: 'brightness(30%)'
@@ -17,7 +17,7 @@ const calculatorImageTextStyle = {
 };
 
 interface Props {
-    calculator: Calculator
+    calculator: Calculation
 }
 
 export default observer (function CalculatorDetailedHeader({calculator}: Props) {

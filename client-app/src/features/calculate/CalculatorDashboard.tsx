@@ -6,14 +6,14 @@ import { useStore } from '../../app/stores/store';
 import CalculatorList from './dashboard/CalculatorList';
 
 export default observer(function CalculatorDashboard() {
-    const { calculatorStore } = useStore();
-    const { loadCalculate, calculatorRegistry } = calculatorStore;
+    const { calculationStore } = useStore();
+    const { loadCalculate, calculatorRegistry } = calculationStore;
 
     useEffect(() => {
         if (calculatorRegistry.size <= 1) loadCalculate();
     }, [loadCalculate, calculatorRegistry.size])
 
-    if (calculatorStore.loadingInitial) return <LoadingComponent content='Loading app...' />
+    if (calculationStore.loadingInitial) return <LoadingComponent content='Loading app...' />
     
     return (
         <Grid>

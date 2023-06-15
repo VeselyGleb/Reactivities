@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import { Item, Button, Icon, Segment } from "semantic-ui-react";
-import { Calculator } from "../../../models/calculator";
+import { Calculation } from "../../../models/calculation";
 
 interface Props {
-    calculator: Calculator
+    calculator: Calculation
 }
 
 export default function CalculatorListItem({ calculator }: Props) {

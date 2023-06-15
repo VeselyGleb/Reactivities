@@ -1,4 +1,4 @@
-export interface Calculator {
+export interface Calculation {
     id: string
     title: string
     date: string

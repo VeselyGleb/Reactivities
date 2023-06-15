@@ -1,10 +1,10 @@
 import { observer } from 'mobx-react-lite';
 import React from 'react'
 import {Segment, Grid, Icon} from 'semantic-ui-react'
-import { Calculator } from '../../../../models/calculator';
+import { Calculation } from '../../../../models/calculation';
 
 interface Props {
-    calculator: Calculator
+    calculator: Calculation
 }
 
 export default observer(function CalculatorDetailedInfo({calculator}: Props) {
