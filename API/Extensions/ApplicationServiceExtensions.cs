@@ -1,3 +1,4 @@
+using Application.Calculations;
 using Application.Activities;
 using Application.Core;
 using MediatR;
@@ -24,7 +25,8 @@ namespace API.Extensions;
                     policy.AllowAnyMethod().AllowAnyHeader().WithOrigins("http://localhost:3000");
                 });
             });
-            services.AddMediatR(typeof(List.Handler));
+            //TODO FIX
+            //services.AddMediatR(typeof(List.Handler));
             services.AddAutoMapper(typeof(MappingProfiles).Assembly);
 
             return services;
