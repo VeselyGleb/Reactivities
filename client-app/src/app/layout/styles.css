@@ -2,7 +2,7 @@ body {
   background-color: #ffdda6 !important;
 }
 .ui.inverted.top.fixed.menu {
-  background-image: linear-gradient(135deg, rgb(223,136,255) 0%, rgb(177, 0, 68) 44%, rgb(104, 0, 151) 89%) !important;
+  background-image: linear-gradient(135deg, rgb(137, 137, 137) 0%, rgb(160, 217, 95) 34%, rgb(4, 114, 108) 89%) !important;
 }
 
 .react-calendar {
@@ -17,10 +17,10 @@ body {
   display: flex;
   align-items: center;
   background-image: linear-gradient(
-          135deg,
-          rgb(223,136,255) 0%,
-          rgb(177, 0, 68) 44%,
-          rgb(104, 0, 151) 89%
+          20deg,
+          #898989 1%,
+          #a0d95f 44%,
+          #04726c 99%
   ) !important;
   height: 100vh;
 }
