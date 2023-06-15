@@ -7,10 +7,10 @@ using Application.Calculations;
 
 namespace API.Controllers
 {
-    public class CalculatubeController : BaseApiController 
+    public class CalculationsController : BaseApiController 
     {
         [HttpGet] //api/calculatube
-        public async Task<ActionResult<List<Calculation>>> GetCalculatube()
+        public async Task<ActionResult<List<Calculation>>> GetCalculations()
         {
             return await Mediator.Send(new List.Query());
         }

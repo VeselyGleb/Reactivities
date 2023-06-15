@@ -26,7 +26,8 @@ namespace API.Extensions;
                 });
             });
             //TODO FIX
-            //services.AddMediatR(typeof(List.Handler));
+            services.AddMediatR(typeof(Application.Activities.List.Handler));
+            services.AddMediatR(typeof(Application.Calculations.List.Handler));
             services.AddAutoMapper(typeof(MappingProfiles).Assembly);
 
             return services;

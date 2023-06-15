@@ -45,6 +45,35 @@ namespace Persistence.Migrations
 
                     b.ToTable("Activities");
                 });
+
+            modelBuilder.Entity("Domain.Calculation", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Diameter")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Group")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Pressure")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Type")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Calculations");
+                });
 #pragma warning restore 612, 618
         }
     }
