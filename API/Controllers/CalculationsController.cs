@@ -22,16 +22,9 @@ namespace API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> CreateCalculator(Calculation calculation)
+        public async Task<ActionResult> CreateCalculation(Calculation calculation)
         {
             return Ok(await Mediator.Send(new Create.Command {Calculation = calculation}));
-        }
-
-        [HttpPut("{id}")]
-        public async Task<ActionResult> EditCalculator(Guid id, Calculation calculation)
-        {
-            calculation.Id = id;
-            return Ok(await Mediator.Send(new Edit.Command{Calculation = calculation}));
         }
     }
 }

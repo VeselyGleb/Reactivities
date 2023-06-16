@@ -81,6 +81,7 @@ export default class CalculatorStore {
     }
 
     createCalculator = async (calculator: Calculation) => {
+        console.log(calculator);
         this.loading = true;
         calculator.id = uuid();
         try {
